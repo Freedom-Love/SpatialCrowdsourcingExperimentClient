@@ -7,6 +7,7 @@ import sys
 
 output_order = ['geotrucrowdgreedy',
                 'geotrucrowdhgr',
+                # 'geotrucrowdlo',
                 'geocrowdgreedy',
                 'geocrowdllep',
                 'geocrowdnnp',
@@ -37,6 +38,21 @@ LABEL = {
     'workerselectha': 'HA'
 }
 
+MARKER = {
+    'geocrowdgreedy': {'marker': 's', 'mew': 1, 'markerSize': 14},
+    'geocrowdnnp': {'marker': '^', 'mew': 1, 'markerSize': 14},
+    'geocrowdllep': {'marker': 'd', 'mew': 1, 'markerSize': 14},
+    'geotrucrowdgreedy': {'marker': '*', 'mew': 1, 'markerSize': 16},
+    'geotrucrowdlo': {'marker': 'p', 'mew': 1, 'markerSize': 14},
+    'geotrucrowdhgr': {'marker': '.', 'mew': 1, 'markerSize': 16},
+    'rdbscsampling': {'marker': '+', 'mew': 2, 'markerSize': 14},
+    'rdbscdivideandconquer': {'marker': 'x', 'mew': 2, 'markerSize': 14},
+    'workerselectprogressive': {'marker': 'o', 'mew': 2, 'markerSize': 14},
+    'workerselectdp': {'marker': ',', 'mew': 1, 'markerSize': 16},
+    'workerselectbb': {'marker': 'v', 'mew': 1, 'markerSize': 14},
+    'workerselectha': {'marker': ' ', 'mew': 1, 'markerSize': 14}
+}
+
 
 def read_file(file_path):
     datas = []
@@ -63,46 +79,14 @@ def read_file(file_path):
 
 def draw(data, suffix):
     line_width = 2
-    markers = [
-        {
-            'marker': 's',
-            'mew': 1,
-            'markerSize': 14
-        }, {
-            'marker': '^',
-            'mew': 1,
-            'markerSize': 14
-        }, {
-            'marker': 'd',
-            'mew': 1,
-            'markerSize': 14
-        }, {
-            'marker': '*',
-            'mew': 1,
-            'markerSize': 16
-        }, {
-            'marker': '.',
-            'mew': 1,
-            'markerSize': 16
-        }, {
-            'marker': '+',
-            'mew': 2,
-            'markerSize': 14
-        }, {
-            'marker': 'x',
-            'mew': 2,
-            'markerSize': 14
-        }]
     legend_text_size = 18
 
     plots = []
-    marker = 0
     plt.figure(figsize=(9, 9))
     for label in output_order:
         p, = plt.plot(data['lines'][label], color='k', label=LABEL[label],
-                      markerfacecolor='w', lineWidth=line_width, **markers[marker])
+                      markerfacecolor='w', lineWidth=line_width, **MARKER[label])
         plots.append(p)
-        marker += 1
     plt.xticks(range(len(data['x_series'])), data['x_series'], size='medium')
     plt.xlabel(data['x_label'], fontsize=legend_text_size)
     plt.ylabel(data['y_label'], fontsize=legend_text_size)
@@ -122,6 +106,7 @@ def main():
             for data in datas:
                 if data['y_label'] != 'worker_num' and data['y_label'] != 'task_num':
                     draw(data, 'eps')
+
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
