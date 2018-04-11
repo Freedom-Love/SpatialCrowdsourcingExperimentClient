@@ -67,7 +67,7 @@ class Task:
 
 def run_jar(params):
     print 'run params', str(params)
-    subprocess.call(['java', '-jar', './GeocrowdDataGenerator.jar'] + params)
+    subprocess.call(['java', '-jar', './SCDataGenerator.jar'] + params)
 
 
 def parse_line(line):
