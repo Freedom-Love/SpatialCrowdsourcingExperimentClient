@@ -123,13 +123,15 @@ def generate_general_task_and_worker(variable_name, options):
     # save data to the specific directory
     sub_dir = param_to_dir_name(variable_name, options)
     parent_dir = path.join('dataset', dirct, 'task')
-    makedirs(path.join(parent_dir, sub_dir))
+    if not path.exists(path.join(parent_dir, sub_dir)):
+        makedirs(path.join(parent_dir, sub_dir))
     for i in xrange(instance):
         file_name = prefix_task + str(i) + '.txt'
         move(path.join(parent_dir, file_name), path.join(parent_dir, sub_dir, file_name))
 
     parent_dir = path.join('dataset', dirct, 'worker')
-    makedirs(path.join(parent_dir, sub_dir))
+    if not path.exists(path.join(parent_dir, sub_dir)):
+        makedirs(path.join(parent_dir, sub_dir))
     for i in xrange(instance):
         file_name = prefix_worker + str(i) + '.txt'
         move(path.join(parent_dir, file_name), path.join(parent_dir, sub_dir, file_name))
