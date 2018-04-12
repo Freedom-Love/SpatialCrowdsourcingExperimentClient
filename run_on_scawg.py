@@ -212,15 +212,15 @@ def set_task_attributes_batch(tasks, time, commit=True):
         session.commit()
 
 
-def generate_data(variable_name, distribution, instance_num=None, worker_per_instance=None, task_per_instance=None,
+def generate_data(variable_name, distribution, instance_num=None, worker_num_per_instance=None, task_num_per_instance=None,
                   task_duration=(1, 2), task_requirement=(1, 3), task_confidence=(0.75, 0.8), worker_capacity=(1, 3),
                   worker_reliability=(0.75, 0.8), working_side_length=(0.05, 0.1)):
     """
         generate data according to settings
         :type distribution: str
         :type instance_num: int
-        :type worker_per_instance: int
-        :type task_per_instance: int
+        :type worker_num_per_instance: int
+        :type task_num_per_instance: int
         :type task_duration: tuple
         :type task_requirement: tuple
         :type task_confidence: tuple
@@ -236,8 +236,8 @@ def generate_data(variable_name, distribution, instance_num=None, worker_per_ins
         distribution,
         'general',
         'instance=' + str(instance_num),
-        'worker_num_per_instance=' + str(worker_per_instance),
-        'task_num_per_instance=' + str(task_per_instance),
+        'worker_num_per_instance=' + str(worker_num_per_instance),
+        'task_num_per_instance=' + str(task_num_per_instance),
         'min_task_duration=' + str(task_duration[0]),
         'max_task_duration=' + str(task_duration[1]),
         'min_task_requirement=' + str(task_requirement[0]),
@@ -254,15 +254,15 @@ def generate_data(variable_name, distribution, instance_num=None, worker_per_ins
     logger.info('data generated')
 
 
-def run_exp(variable_name, distribution, instance_num=None, worker_per_instance=None, task_per_instance=None,
+def run_exp(variable_name, distribution, instance_num=None, worker_num_per_instance=None, task_num_per_instance=None,
             task_duration=(1, 2), task_requirement=(1, 3), task_confidence=(0.75, 0.8), worker_capacity=(1, 3),
             worker_reliability=(0.75, 0.8), working_side_length=(0.05, 0.1)):
     """
     run experiment and return the result
     :type distribution: str
     :type instance_num: int
-    :type worker_per_instance: int
-    :type task_per_instance: int
+    :type worker_num_per_instance: int
+    :type task_num_per_instance: int
     :type task_duration: tuple
     :type task_requirement: tuple
     :type task_confidence: tuple
@@ -295,8 +295,8 @@ def run_exp(variable_name, distribution, instance_num=None, worker_per_instance=
         distribution,
         'general',
         'instance=' + str(instance_num),
-        'worker_num_per_instance=' + str(worker_per_instance),
-        'task_num_per_instance=' + str(task_per_instance),
+        'worker_num_per_instance=' + str(worker_num_per_instance),
+        'task_num_per_instance=' + str(task_num_per_instance),
         'min_task_duration=' + str(task_duration[0]),
         'max_task_duration=' + str(task_duration[1]),
         'min_task_requirement=' + str(task_requirement[0]),
@@ -375,8 +375,8 @@ def run_on_variable(distribution, variable_name, values):
 
 def test():
     config.change_to('worker_select')
-    run_on_variable('skew', 'worker_per_instance', config.worker_per_instance)
-    run_on_variable('skew', 'task_per_instance', config.task_per_instance)
+    run_on_variable('skew', 'worker_num_per_instance', config.worker_num_per_instance)
+    run_on_variable('skew', 'task_num_per_instance', config.task_num_per_instance)
 
 
 if __name__ == '__main__':
@@ -395,8 +395,8 @@ if __name__ == '__main__':
         if sys.argv[2] == 'generate':
             for dist in config.distribution:
                 if dist != 'real':
-                    generate_data_on_variable(dist, 'worker_per_instance', config.worker_per_instance)
-                    generate_data_on_variable(dist, 'task_per_instance', config.task_per_instance)
+                    generate_data_on_variable(dist, 'worker_num_per_instance', config.worker_num_per_instance)
+                    generate_data_on_variable(dist, 'task_num_per_instance', config.task_num_per_instance)
                 generate_data_on_variable(dist, 'task_duration', config.task_duration)
                 generate_data_on_variable(dist, 'task_requirement', config.task_requirement)
                 generate_data_on_variable(dist, 'task_confidence', config.task_confidence)
@@ -407,8 +407,8 @@ if __name__ == '__main__':
         if sys.argv[2] == 'run':
             for dist in config.distribution:
                 if dist != 'real':
-                    run_on_variable(dist, 'worker_per_instance', config.worker_per_instance)
-                    run_on_variable(dist, 'task_per_instance', config.task_per_instance)
+                    run_on_variable(dist, 'worker_num_per_instance', config.worker_num_per_instance)
+                    run_on_variable(dist, 'task_num_per_instance', config.task_num_per_instance)
                 run_on_variable(dist, 'task_duration', config.task_duration)
                 run_on_variable(dist, 'task_requirement', config.task_requirement)
                 run_on_variable(dist, 'task_confidence', config.task_confidence)
