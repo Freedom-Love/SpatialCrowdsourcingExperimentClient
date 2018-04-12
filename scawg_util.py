@@ -106,7 +106,7 @@ def generate_instance(options):
     run_jar(options)
 
 
-def generate_general_task_and_worker(options):
+def generate_general_task_and_worker(variable_name, options):
     run_jar(['general'] + options)
     dirct = 'uni'
     prefix_task = 'uni_tasks'
@@ -121,7 +121,7 @@ def generate_general_task_and_worker(options):
         prefix_worker = 'workers'
 
     # save data to the specific directory
-    sub_dir = param_to_dir_name(options)
+    sub_dir = param_to_dir_name(variable_name, options)
     parent_dir = path.join('dataset', dirct, 'task')
     makedirs(path.join(parent_dir, sub_dir))
     for i in xrange(instance):
@@ -135,7 +135,7 @@ def generate_general_task_and_worker(options):
         move(path.join(parent_dir, file_name), path.join(parent_dir, sub_dir, file_name))
 
 
-def read_task_and_worker(options):
+def read_task_and_worker(variable_name, options):
     dirct = 'uni'
     prefix_task = 'uni_tasks'
     prefix_worker = 'uni_workers'
@@ -148,7 +148,7 @@ def read_task_and_worker(options):
         prefix_task = 'tasks'
         prefix_worker = 'workers'
 
-    sub_dir = param_to_dir_name(options)
+    sub_dir = param_to_dir_name(variable_name, options)
     tasks = []
     for i in xrange(instance):
         temp = []
@@ -200,8 +200,11 @@ def compute_entropy(tasks, workers):
             # print 'entropy is', entropy
 
 
-def param_to_dir_name(options):
-    return '_'.join(options)
+def param_to_dir_name(variable_name, options):
+    for option in options:
+        if variable_name in option:
+            return option.split('=')[1].replace(' ', '')
+    raise Exception('cannot find variable ' + variable_name + ' in options ' + str(options))
 
 
 def clear_dir():

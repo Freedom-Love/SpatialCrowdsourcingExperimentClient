@@ -212,7 +212,7 @@ def set_task_attributes_batch(tasks, time, commit=True):
         session.commit()
 
 
-def generate_data(distribution, instance_num=None, worker_per_instance=None, task_per_instance=None,
+def generate_data(variable_name, distribution, instance_num=None, worker_per_instance=None, task_per_instance=None,
                   task_duration=(1, 2), task_requirement=(1, 3), task_confidence=(0.75, 0.8), worker_capacity=(1, 3),
                   worker_reliability=(0.75, 0.8), working_side_length=(0.05, 0.1)):
     """
@@ -232,7 +232,7 @@ def generate_data(distribution, instance_num=None, worker_per_instance=None, tas
     if distribution == 'real':
         instance_num = 20
 
-    scawg_util.generate_general_task_and_worker([
+    scawg_util.generate_general_task_and_worker(variable_name, [
         distribution,
         'general',
         'instance=' + str(instance_num),
@@ -254,7 +254,7 @@ def generate_data(distribution, instance_num=None, worker_per_instance=None, tas
     logger.info('data generated')
 
 
-def run_exp(distribution, instance_num=None, worker_per_instance=None, task_per_instance=None,
+def run_exp(variable_name, distribution, instance_num=None, worker_per_instance=None, task_per_instance=None,
             task_duration=(1, 2), task_requirement=(1, 3), task_confidence=(0.75, 0.8), worker_capacity=(1, 3),
             worker_reliability=(0.75, 0.8), working_side_length=(0.05, 0.1)):
     """
@@ -291,7 +291,7 @@ def run_exp(distribution, instance_num=None, worker_per_instance=None, task_per_
     if distribution == 'real':
         instance_num = 20
 
-    tasks, workers = scawg_util.read_task_and_worker([
+    tasks, workers = scawg_util.read_task_and_worker(variable_name, [
         distribution,
         'general',
         'instance=' + str(instance_num),
@@ -339,7 +339,7 @@ def generate_data_on_variable(distribution, variable_name, values):
     for value in values:
         kwargs = config.get_default()
         kwargs[variable_name] = value
-        generate_data(distribution, **kwargs)
+        generate_data(variable_name, distribution, **kwargs)
 
 
 def run_on_variable(distribution, variable_name, values):
