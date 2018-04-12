@@ -203,7 +203,7 @@ def compute_entropy(tasks, workers):
 def param_to_dir_name(variable_name, options):
     for option in options:
         if variable_name in option:
-            return option.split('=')[1].replace(' ', '')
+            return variable_name + '/' + option.split('=')[1].replace(' ', '')
     raise Exception('cannot find variable ' + variable_name + ' in options ' + str(options))
 
 
