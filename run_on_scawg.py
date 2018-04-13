@@ -348,7 +348,7 @@ def run_on_variable(distribution, variable_name, values):
     for value in values:
         kwargs = config.get_default()
         kwargs[variable_name] = value
-        temp = run_exp(distribution, **kwargs)
+        temp = run_exp(variable_name, distribution, **kwargs)
         for method in temp:
             if method not in results:
                 results[method] = {}
