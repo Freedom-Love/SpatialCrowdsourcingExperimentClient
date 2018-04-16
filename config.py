@@ -16,13 +16,13 @@ output_order_worker_select = ['workerselectprogressive',
                               ]
 
 output_order_server_assign = ['geotrucrowdgreedy',
-                'geotrucrowdhgr',
-                'geocrowdgreedy',
-                'geocrowdllep',
-                'geocrowdnnp',
-                'rdbscdivideandconquer',
-                'rdbscsampling'
-                ]
+                            'geotrucrowdhgr',
+                            'geocrowdgreedy',
+                            'geocrowdllep',
+                            'geocrowdnnp',
+                            'rdbscdivideandconquer',
+                            'rdbscsampling'
+                            ]
 
 # total_worker_num = 100000
 distribution = ['real', 'skew', 'gaus', 'unif']

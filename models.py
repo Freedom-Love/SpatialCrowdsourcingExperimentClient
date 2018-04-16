@@ -50,3 +50,5 @@ class HitDetail(Base):
 
     longitude = Column(REAL())
     latitude = Column(REAL())
+
+
