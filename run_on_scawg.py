@@ -149,8 +149,5 @@ def run_experiments_plan(mode):
 
 
 if __name__ == '__main__':
-    run_experiments_plan('worker_select')
+    # run_experiments_plan('worker_select')
     run_experiments_plan('server_assign')
-
-
-
