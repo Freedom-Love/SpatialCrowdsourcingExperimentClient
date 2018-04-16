@@ -286,8 +286,8 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
     for method in config.output_order:
         result[method] = Measure()
 
-    if distribution != 'unif':
-        result = {'workerselectbb': Measure()}
+    # if distribution != 'unif':
+    #     result = {'workerselectbb': Measure()}
     if distribution == 'real':
         instance_num = 20
 

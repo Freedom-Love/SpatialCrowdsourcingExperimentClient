@@ -3,9 +3,9 @@ import platform
 
 __author__ = 'Jian Xun'
 
-INDEX_HOST = 'http://127.0.0.1:8081/'
+INDEX_HOST = 'http://127.0.0.1:8080/'
 if platform.system() == 'Darwin':
-    INDEX_HOST = 'http://192.168.99.100:8081/'
+    INDEX_HOST = 'http://192.168.99.100:8080/'
 
 
 def assign_batch(method):
