@@ -8,8 +8,6 @@ from http_client import get, post, post_image
 
 sysstr = platform.system()
 API_HOST = 'http://127.0.0.1:9091/'
-if sysstr == 'Darwin':
-    API_HOST = 'http://192.168.99.100:9091/'
 
 CAMPAIGN_USER_ROLE_OWNER = 1
 CAMPAIGN_USER_ROLE_PARTICIPANT = 2

@@ -77,8 +77,8 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
     # test on each method in result
     for method in result:
         logger.info('assign ' + method)
-        if method == 'workerselectprogressive' and distribution == 'real' and task_duration[0] == 4:
-            continue
+        # if method == 'workerselectprogressive' and distribution == 'real' and task_duration[0] == 4:
+        #     continue
         assign = encoder.encode(index_server_client.assign_batch(method))
         # print isinstance(assign, list), isinstance(assign, dict), isinstance(assign, str)
         logger.info('add result of ' + method)
