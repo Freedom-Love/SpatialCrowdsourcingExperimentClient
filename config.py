@@ -1,5 +1,7 @@
 __author__ = 'Jian Xun'
 
+assignment_mode = 'server_assign'
+
 output_order = ['geotrucrowdgreedy',
                 'geotrucrowdhgr',
                 'geocrowdgreedy',

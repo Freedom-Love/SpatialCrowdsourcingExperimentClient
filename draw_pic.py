@@ -99,10 +99,10 @@ def draw(data, suffix):
 
 
 def main():
-    files = listdir('.')
+    files = listdir('./results')
     for file_name in files:
         if '.csv' in file_name:
-            datas = read_file(file_name)
+            datas = read_file(path.join('results', file_name))
             for data in datas:
                 if data['y_label'] != 'worker_num' and data['y_label'] != 'task_num':
                     draw(data, 'eps')

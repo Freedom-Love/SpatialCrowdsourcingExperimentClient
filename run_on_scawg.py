@@ -105,7 +105,7 @@ def run_on_variable(distribution, variable_name, values):
     if not path.exists('results'):
         makedirs('results')
 
-    output_file = open('results/'+distribution + '_' + variable_name + '.csv', 'w')
+    output_file = open('results/' + config.assignment_mode + '_' + distribution + '_' + variable_name + '.csv', 'w')
     for measure in measures:
         output_file.write(measure + '\n')
         output_file.write('method')
