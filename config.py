@@ -27,7 +27,7 @@ output_order_server_assign = ['geotrucrowdgreedy',
                             ]
 
 # total_worker_num = 100000
-distribution = ['real', 'skew', 'gaus', 'unif']
+distribution = ['gaus', 'real', 'skew', 'unif']
 worker_num_per_instance = [150, 200, 250, 300, 350]
 task_num_per_instance = [150, 200, 250, 300, 350]
 task_duration = [(1, 2), (2, 3), (3, 4), (4, 5)]
