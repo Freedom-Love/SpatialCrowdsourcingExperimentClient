@@ -7,7 +7,6 @@ import sys
 
 output_order = ['geotrucrowdgreedy',
                 'geotrucrowdhgr',
-                # 'geotrucrowdlo',
                 'geocrowdgreedy',
                 'geocrowdllep',
                 'geocrowdnnp',
@@ -28,7 +27,6 @@ LABEL = {
     'geocrowdnnp': 'G-nnp',
     'geocrowdllep': 'G-llep',
     'geotrucrowdgreedy': 'GT-greedy',
-    'geotrucrowdlo': 'GT-lo',
     'geotrucrowdhgr': 'GT-HGR',
     'rdbscsampling': 'RDB-sam',
     'rdbscdivideandconquer': 'RDB-d&c',
@@ -43,14 +41,13 @@ MARKER = {
     'geocrowdnnp': {'marker': '^', 'mew': 1, 'markerSize': 14},
     'geocrowdllep': {'marker': 'd', 'mew': 1, 'markerSize': 14},
     'geotrucrowdgreedy': {'marker': '*', 'mew': 1, 'markerSize': 16},
-    'geotrucrowdlo': {'marker': 'p', 'mew': 1, 'markerSize': 14},
-    'geotrucrowdhgr': {'marker': '.', 'mew': 1, 'markerSize': 16},
+    'geotrucrowdhgr': {'marker': 'p', 'mew': 1, 'markerSize': 16},
     'rdbscsampling': {'marker': '+', 'mew': 2, 'markerSize': 14},
     'rdbscdivideandconquer': {'marker': 'x', 'mew': 2, 'markerSize': 14},
     'workerselectprogressive': {'marker': 'o', 'mew': 2, 'markerSize': 14},
     'workerselectdp': {'marker': ',', 'mew': 1, 'markerSize': 16},
     'workerselectbb': {'marker': 'v', 'mew': 1, 'markerSize': 14},
-    'workerselectha': {'marker': ' ', 'mew': 1, 'markerSize': 14}
+    'workerselectha': {'marker': '8', 'mew': 1, 'markerSize': 14}
 }
 
 

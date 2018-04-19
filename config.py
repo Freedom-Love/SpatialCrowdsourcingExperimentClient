@@ -76,14 +76,15 @@ default_setting_worker_select = {
 
 
 def change_to(category):
+    global output_order
+    global assignment_mode
+    assignment_mode = category
+
     if category == 'online':
-        global output_order
         output_order = output_order_online_mode
     elif category == 'batched':
-        global output_order
         output_order = output_order_batched_mode
     elif category == 'mix':
-        global output_order
         output_order = output_order_mix_selected
 
 
