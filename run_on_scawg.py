@@ -30,10 +30,6 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
     DBUtil.clear()
     logger.info('db initialized')
 
-    # initial boss
-    # boss = virtual_user.Boss('jianxuntest_boss', 'PaSSwoRd', 'jianxuntest_boss@test.com')
-
-    # instance_num = 2
 
     # statistics including number of assigned(finished) tasks, average moving distance, average workload, running time
     result = {}
@@ -43,7 +39,7 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
     # if distribution != 'unif':
     #     result = {'workerselectbb': Measure()}
     if distribution == 'real':
-        instance_num = 20
+        instance_num = 30
 
     tasks, workers = scawg_util.read_task_and_worker(variable_name, [
         distribution,
@@ -78,8 +74,8 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
     # test on each method in result
     for method in result:
         logger.info('assign ' + method)
-        if method == 'workerselectprogressive' and distribution == 'real' and task_duration[0] == 4:
-            continue
+        # if method == 'workerselectprogressive' and distribution == 'real' and task_duration[0] == 4:
+        #     continue
         assign = encoder.encode(index_server_client.assign_batch(method))
         # print isinstance(assign, list), isinstance(assign, dict), isinstance(assign, str)
         logger.info('add result of ' + method)

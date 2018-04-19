@@ -27,7 +27,7 @@ def generate_data(variable_name, distribution, instance_num=None, worker_num_per
     """
     logger.info('generating data')
     if distribution == 'real':
-        instance_num = 20
+        instance_num = 30
 
     scawg_util.generate_general_task_and_worker(variable_name, [
         distribution,
