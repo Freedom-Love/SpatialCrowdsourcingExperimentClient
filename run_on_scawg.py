@@ -125,18 +125,19 @@ def run_on_variable(distribution, variable_name, values):
 
 
 def test():
-    config.change_to('worker_select')
-    run_on_variable('skew', 'worker_num_per_instance', config.worker_num_per_instance)
-    run_on_variable('skew', 'task_num_per_instance', config.task_num_per_instance)
+    config.change_to('online')
+    run_on_variable('real', 'task_duration', config.task_duration)
+    config.change_to('batched')
+    run_on_variable('real', 'task_duration', config.task_duration)
 
 
 def run_experiments_plan(mode):
-    if mode == 'worker_select':
-        logger.info('worker-selected mode')
-        config.change_to('worker_select')
-    elif mode == 'server_assign':
-        logger.info('server-assigned mode')
-        config.change_to('server_assign')
+    if mode == 'online':
+        logger.info('online mode')
+        config.change_to('online')
+    elif mode == 'batched':
+        logger.info('batched mode')
+        config.change_to('batched')
 
     for dist in config.distribution:
         if dist != 'real':
@@ -152,4 +153,5 @@ def run_experiments_plan(mode):
 
 if __name__ == '__main__':
     # run_experiments_plan('worker_select')
-    run_experiments_plan('server_assign')
+    # run_experiments_plan('batched')
+    test()

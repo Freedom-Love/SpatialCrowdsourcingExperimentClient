@@ -1,6 +1,6 @@
 __author__ = 'Jian Xun'
 
-assignment_mode = 'server_assign'
+assignment_mode = 'batched'
 
 output_order = ['geotrucrowdgreedy',
                 'geotrucrowdhgr',
@@ -11,13 +11,24 @@ output_order = ['geotrucrowdgreedy',
                 'rdbscsampling'
                 ]
 
-output_order_worker_select = ['workerselectprogressive',
-                              'workerselectdp',
-                              'workerselectbb',
-                              'workerselectha'
-                              ]
+output_order_mix_selected = [
+                'geotrucrowdhgr',
+                'geocrowdllep',
+                'rdbscdivideandconquer',
+                'workerselectprogressive',
+                'workerselectdp',
+                'workerselectha'
+                ]
 
-output_order_server_assign = ['geotrucrowdgreedy',
+
+
+output_order_online_mode = ['workerselectprogressive',
+                          'workerselectdp',
+                          'workerselectbb',
+                          'workerselectha'
+                          ]
+
+output_order_batched_mode = ['geotrucrowdgreedy',
                             'geotrucrowdhgr',
                             'geocrowdgreedy',
                             'geocrowdllep',
@@ -65,12 +76,15 @@ default_setting_worker_select = {
 
 
 def change_to(category):
-    if category == 'worker_select':
+    if category == 'online':
         global output_order
-        output_order = output_order_worker_select
-    elif category == 'server_assign':
+        output_order = output_order_online_mode
+    elif category == 'batched':
         global output_order
-        output_order = output_order_server_assign
+        output_order = output_order_batched_mode
+    elif category == 'mix':
+        global output_order
+        output_order = output_order_mix_selected
 
 
 def get_default():
