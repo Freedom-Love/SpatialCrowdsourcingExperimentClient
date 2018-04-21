@@ -36,8 +36,7 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
     for method in config.output_order:
         result[method] = Measure()
 
-    # if distribution != 'unif':
-    #     result = {'workerselectbb': Measure()}
+
     if distribution == 'real':
         instance_num = 30
 
@@ -74,8 +73,8 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
     # test on each method in result
     for method in result:
         logger.info('assign ' + method)
-        # if method == 'workerselectprogressive' and distribution == 'real' and task_duration[0] == 4:
-        #     continue
+        if method == 'workerselectprogressive' and distribution == 'real' and task_duration[0] >= 4:
+            continue
         assign = encoder.encode(index_server_client.assign_batch(method))
         # print isinstance(assign, list), isinstance(assign, dict), isinstance(assign, str)
         logger.info('add result of ' + method)
@@ -121,10 +120,11 @@ def run_on_variable(distribution, variable_name, values):
 
 
 def test():
-    config.change_to('online')
-    run_on_variable('real', 'task_duration', config.task_duration)
     config.change_to('batched')
     run_on_variable('real', 'task_duration', config.task_duration)
+    config.change_to('online')
+    run_on_variable('real', 'task_duration', config.task_duration)
+
 
 
 def run_experiments_plan(mode):
