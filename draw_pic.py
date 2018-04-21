@@ -11,14 +11,12 @@ output_order = ['geotrucrowdgreedy',
                 'geocrowdllep',
                 'geocrowdnnp',
                 'rdbscdivideandconquer',
-                'rdbscsampling'
+                'rdbscsampling',
+                'workerselectprogressive',
+                'workerselectdp',
+                'workerselectbb',
+                'workerselectha'
                 ]
-
-output_order_ws = ['workerselectprogressive',
-                   'workerselectdp',
-                   'workerselectbb',
-                   'workerselectha'
-                   ]
 
 __author__ = 'Jian Xun'
 
@@ -37,17 +35,17 @@ LABEL = {
 }
 
 MARKER = {
-    'geocrowdgreedy': {'marker': 's', 'mew': 1, 'markerSize': 14},
-    'geocrowdnnp': {'marker': '^', 'mew': 1, 'markerSize': 14},
-    'geocrowdllep': {'marker': 'd', 'mew': 1, 'markerSize': 14},
-    'geotrucrowdgreedy': {'marker': '*', 'mew': 1, 'markerSize': 16},
-    'geotrucrowdhgr': {'marker': 'p', 'mew': 1, 'markerSize': 16},
-    'rdbscsampling': {'marker': '+', 'mew': 2, 'markerSize': 14},
-    'rdbscdivideandconquer': {'marker': 'x', 'mew': 2, 'markerSize': 14},
-    'workerselectprogressive': {'marker': 'o', 'mew': 2, 'markerSize': 14},
-    'workerselectdp': {'marker': ',', 'mew': 1, 'markerSize': 16},
-    'workerselectbb': {'marker': 'v', 'mew': 1, 'markerSize': 14},
-    'workerselectha': {'marker': '8', 'mew': 1, 'markerSize': 14}
+    'geocrowdgreedy': {'marker': 's', 'mew': 1, 'markersize': 14},
+    'geocrowdnnp': {'marker': '^', 'mew': 1, 'markersize': 14},
+    'geocrowdllep': {'marker': 'd', 'mew': 1, 'markersize': 14},
+    'geotrucrowdgreedy': {'marker': '*', 'mew': 1, 'markersize': 16},
+    'geotrucrowdhgr': {'marker': 'p', 'mew': 1, 'markersize': 16},
+    'rdbscsampling': {'marker': '+', 'mew': 2, 'markersize': 14},
+    'rdbscdivideandconquer': {'marker': 'x', 'mew': 2, 'markersize': 14},
+    'workerselectprogressive': {'marker': 'o', 'mew': 2, 'markersize': 14},
+    'workerselectdp': {'marker': ',', 'mew': 1, 'markersize': 16},
+    'workerselectbb': {'marker': 'v', 'mew': 1, 'markersize': 14},
+    'workerselectha': {'marker': '|', 'mew': 1, 'markersize': 14}
 }
 
 
@@ -81,13 +79,16 @@ def draw(data, suffix):
     plots = []
     plt.figure(figsize=(9, 9))
     for label in output_order:
-        p, = plt.plot(data['lines'][label], color='k', label=LABEL[label],
-                      markerfacecolor='w', lineWidth=line_width, **MARKER[label])
-        plots.append(p)
+        if label in data['lines']:
+            p, = plt.plot(data['lines'][label], color='k', label=LABEL[label], markerfacecolor='w', linewidth=line_width, **MARKER[label])
+            plots.append(p)
+
     plt.xticks(range(len(data['x_series'])), data['x_series'], size='medium')
     plt.xlabel(data['x_label'], fontsize=legend_text_size)
     plt.ylabel(data['y_label'], fontsize=legend_text_size)
-    plt.legend(handles=plots)
+    plt.show()
+    # plt.legend(handles=plots)
+
 
     # save picture into 'pics' directory
     if not path.isdir('./pics'):
@@ -106,8 +107,5 @@ def main():
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        arg = sys.argv[1]
-        if arg == 'worker_select':
-            output_order = output_order_ws
+
     main()

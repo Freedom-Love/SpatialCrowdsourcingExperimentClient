@@ -90,20 +90,23 @@ class Measure:
                 if Measure.satisfy_conf(self.task_dic[tid], [self.worker_dic[wid] for wid in self.task_worker[tid]]):
                     finished_conf += 1
         return {
-            'task_num': len(self.task_dic),
-            'worker_num': len(self.worker_dic),
-            'assigned_worker_num': len(self.assigned_workers),
-            'finished_task_num': self.finished,
-            'finished_task_num_conf': finished_conf,
             'average_moving_dis':
                 0 if len(self.assigned_workers) == 0 else self.total_moving_dis / len(self.assigned_workers),
-            'average_moving_distance_per_WT_pair':
-                0 if self.total_assignment == 0 else self.total_moving_dis / self.total_assignment,
-            'average_workload':
-                0 if len(self.assigned_workers) == 0 else (self.total_assignment + 0.0) / len(self.assigned_workers),
-            'total_assignment': self.total_assignment,
+            'finished_task_num': self.finished,
+            'finished_task_num_conf': finished_conf,
             'running_time': self.running_time / 1000.0
         }
+            # 'task_num': len(self.task_dic),
+            # 'worker_num': len(self.worker_dic),
+            # 'assigned_worker_num': len(self.assigned_workers),
+            # 'average_moving_dis':
+            #     0 if len(self.assigned_workers) == 0 else self.total_moving_dis / len(self.assigned_workers),
+            # 'average_moving_distance_per_WT_pair':
+            #     0 if self.total_assignment == 0 else self.total_moving_dis / self.total_assignment,
+            # 'average_workload':
+            #     0 if len(self.assigned_workers) == 0 else (self.total_assignment + 0.0) / len(self.assigned_workers),
+            # 'total_assignment': self.total_assignment,
+
 
 
 
