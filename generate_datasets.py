@@ -79,4 +79,4 @@ if __name__ == '__main__':
         # generate_data_on_variable(dist, 'worker_capacity', config.worker_capacity)
         # generate_data_on_variable(dist, 'worker_reliability', config.worker_reliability)
         # generate_data_on_variable(dist, 'working_side_length', config.working_side_length)
-        # generate_data_on_variable(dist, 'batch_interval_time', config.batch_interval_time)
+        generate_data_on_variable(dist, 'batch_interval_time', config.batch_interval_time)

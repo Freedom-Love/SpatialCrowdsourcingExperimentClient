@@ -85,14 +85,14 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
         #     continue
         if method == 'geotrucrowdhgr' and task_requirement[0] >= 7:
             continue
-        # if method == 'geotrucrowdhgr' and working_side_length[0] >= 0.2:
-        #     continue
+        if method == 'geotrucrowdhgr' and working_side_length[0] >= 0.15:
+            continue
         # if method == 'geotrucrowdhgr' and worker_capacity[0] >= 5:
         #     continue
         # if method == 'workerselectdp' and worker_capacity[0] >= 4:
         #     continue
-        # if method == 'workerselectdp' and working_side_length[0] >= 0.15:
-        #     continue
+        if method == 'workerselectdp' and working_side_length[0] >= 0.15:
+            continue
         assign = encoder.encode(index_server_client.assign_batch(method))
         # print isinstance(assign, list), isinstance(assign, dict), isinstance(assign, str)
         logger.info('add result of ' + method)
@@ -164,11 +164,11 @@ def run_experiments_plan(mode):
             run_on_variable(dist, 'worker_location_variance', config.worker_location_variance)
             run_on_variable(dist, 'worker_cluster_number', config.worker_cluster_number)
 
-        run_on_variable(dist, 'task_duration', config.task_duration)
-        run_on_variable(dist, 'task_requirement', config.task_requirement)
-        run_on_variable(dist, 'task_confidence', config.task_confidence)
-        run_on_variable(dist, 'worker_capacity', config.worker_capacity)
-        run_on_variable(dist, 'worker_reliability', config.worker_reliability)
+        # run_on_variable(dist, 'task_duration', config.task_duration)
+        # run_on_variable(dist, 'task_requirement', config.task_requirement)
+        # run_on_variable(dist, 'task_confidence', config.task_confidence)
+        # run_on_variable(dist, 'worker_capacity', config.worker_capacity)
+        # run_on_variable(dist, 'worker_reliability', config.worker_reliability)
         run_on_variable(dist, 'working_side_length', config.working_side_length)
         run_on_variable(dist, 'batch_interval_time', config.batch_interval_time)
 
