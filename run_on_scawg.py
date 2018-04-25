@@ -30,6 +30,7 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
 
     # DBUtil.initialize_db()
     DBUtil.clear()
+    logger.info('Run on ' + variable_name)
     logger.info('db initialized')
 
 
@@ -79,8 +80,19 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
     # test on each method in result
     for method in result:
         logger.info('assign ' + method)
-        if method == 'workerselectprogressive' and distribution == 'real' and task_duration[0] >= 4:
+        print 'assign' + method
+        # if method == 'workerselectprogressive' and distribution == 'real' and task_duration[0] >= 4:
+        #     continue
+        if method == 'geotrucrowdhgr' and task_requirement[0] >= 7:
             continue
+        # if method == 'geotrucrowdhgr' and working_side_length[0] >= 0.2:
+        #     continue
+        # if method == 'geotrucrowdhgr' and worker_capacity[0] >= 5:
+        #     continue
+        # if method == 'workerselectdp' and worker_capacity[0] >= 4:
+        #     continue
+        # if method == 'workerselectdp' and working_side_length[0] >= 0.15:
+        #     continue
         assign = encoder.encode(index_server_client.assign_batch(method))
         # print isinstance(assign, list), isinstance(assign, dict), isinstance(assign, str)
         logger.info('add result of ' + method)
@@ -140,6 +152,9 @@ def run_experiments_plan(mode):
     elif mode == 'batched':
         logger.info('batched mode')
         config.change_to('batched')
+    elif mode == 'mix':
+        logger.info('mix mode')
+        config.change_to('mix')
 
     for dist in config.distribution:
         if dist != 'real':
@@ -158,7 +173,11 @@ def run_experiments_plan(mode):
         run_on_variable(dist, 'batch_interval_time', config.batch_interval_time)
 
 
+
 if __name__ == '__main__':
-    # run_experiments_plan('worker_select')
+    # run_experiments_plan('online')
     # run_experiments_plan('batched')
-    test()
+
+    run_experiments_plan('mix')
+
+    # test()
