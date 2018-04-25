@@ -106,12 +106,14 @@ def generate_instance(options):
     run_jar(options)
 
 
-def generate_general_task_and_worker(variable_name, options):
+def generate_general_task_and_worker(variable_name, dist, options):
     run_jar(['general'] + options)
-    dirct = 'uni'
-    prefix_task = 'uni_tasks'
-    prefix_worker = 'uni_workers'
-    instance = 20
+    source_dirct = 'res/dataset/'
+    dirct = dist
+    prefix_task = dist+'_tasks'
+    prefix_worker = dist+'_workers'
+
+
     for option in options:
         if option.startswith('instance='):
             instance = int(option[9:])
@@ -127,21 +129,21 @@ def generate_general_task_and_worker(variable_name, options):
         makedirs(path.join(parent_dir, sub_dir))
     for i in xrange(instance):
         file_name = prefix_task + str(i) + '.txt'
-        move(path.join(parent_dir, file_name), path.join(parent_dir, sub_dir, file_name))
+        move(path.join(source_dirct, 'task/tasks' + str(i) + '.txt'), path.join(parent_dir, sub_dir, file_name))
 
     parent_dir = path.join('dataset', dirct, 'worker')
     if not path.exists(path.join(parent_dir, sub_dir)):
         makedirs(path.join(parent_dir, sub_dir))
     for i in xrange(instance):
         file_name = prefix_worker + str(i) + '.txt'
-        move(path.join(parent_dir, file_name), path.join(parent_dir, sub_dir, file_name))
+        move(path.join(source_dirct, 'worker/workers' + str(i)+'.txt'), path.join(parent_dir, sub_dir, file_name))
 
 
-def read_task_and_worker(variable_name, options):
-    dirct = 'uni'
-    prefix_task = 'uni_tasks'
-    prefix_worker = 'uni_workers'
-    instance = 20
+def read_task_and_worker(variable_name, dist, options):
+    dirct = dist
+    prefix_task = dist + '_tasks'
+    prefix_worker = dist + '_workers'
+
     for option in options:
         if option.startswith('instance='):
             instance = int(option[9:])

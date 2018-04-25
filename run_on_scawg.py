@@ -10,7 +10,8 @@ __author__ = 'Jian Xun'
 
 def run_exp(variable_name, distribution, instance_num=None, worker_num_per_instance=None, task_num_per_instance=None,
             task_duration=(1, 2), task_requirement=(1, 3), task_confidence=(0.75, 0.8), worker_capacity=(1, 3),
-            worker_reliability=(0.75, 0.8), working_side_length=(0.05, 0.1)):
+            worker_reliability=(0.75, 0.8), working_side_length=(0.05, 0.1), batch_interval_time=120, worker_location_mean = 0.5,
+                worker_location_variance = 0.2, worker_cluster_number = 3):
     """
     run experiment and return the result
     :type distribution: str
@@ -23,6 +24,7 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
     :type worker_capacity: tuple
     :type worker_reliability: tuple
     :type working_side_length: tuple
+    :type batch_interval_time: double
     :return:
     """
 
@@ -36,9 +38,9 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
     for method in config.output_order:
         result[method] = Measure()
 
-
     if distribution == 'real':
-        instance_num = 30
+        total_real_data_time_length = 3600
+        instance_num = total_real_data_time_length/batch_interval_time
 
     tasks, workers = scawg_util.read_task_and_worker(variable_name, [
         distribution,
@@ -57,7 +59,11 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
         'min_worker_reliability=' + str(worker_reliability[0]),
         'max_worker_reliability=' + str(worker_reliability[1]),
         'min_working_side_length=' + str(working_side_length[0]),
-        'max_working_side_length=' + str(working_side_length[1])
+        'max_working_side_length=' + str(working_side_length[1]),
+        'batch_interval_time=' + str(batch_interval_time),
+        'worker_location_mean=' + str(worker_location_mean),
+        'worker_location_variance=' + str(worker_location_variance),
+        'worker_cluster_number=' + str(worker_cluster_number)
     ])
     logger.info('data loaded')
 
@@ -137,14 +143,19 @@ def run_experiments_plan(mode):
 
     for dist in config.distribution:
         if dist != 'real':
-            run_on_variable(dist, 'worker_num_per_instance', config.worker_num_per_instance)
-            run_on_variable(dist, 'task_num_per_instance', config.task_num_per_instance)
+            # run_on_variable(dist, 'worker_num_per_instance', config.worker_num_per_instance)
+            # run_on_variable(dist, 'task_num_per_instance', config.task_num_per_instance)
+            run_on_variable(dist, 'worker_location_mean', config.worker_location_mean)
+            run_on_variable(dist, 'worker_location_variance', config.worker_location_variance)
+            run_on_variable(dist, 'worker_cluster_number', config.worker_cluster_number)
+
         run_on_variable(dist, 'task_duration', config.task_duration)
         run_on_variable(dist, 'task_requirement', config.task_requirement)
         run_on_variable(dist, 'task_confidence', config.task_confidence)
         run_on_variable(dist, 'worker_capacity', config.worker_capacity)
         run_on_variable(dist, 'worker_reliability', config.worker_reliability)
         run_on_variable(dist, 'working_side_length', config.working_side_length)
+        run_on_variable(dist, 'batch_interval_time', config.batch_interval_time)
 
 
 if __name__ == '__main__':
