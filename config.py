@@ -12,10 +12,10 @@ output_order = ['geotrucrowdgreedy',
                 ]
 
 output_order_mix_selected = [
-                'geotrucrowdhgr',
-                'geocrowdllep',
-                'rdbscdivideandconquer',
-                'workerselectprogressive',
+                # 'geotrucrowdhgr',
+                # 'geocrowdllep',
+                'rdbscsampling',
+                # 'workerselectbb',
                 'workerselectdp',
                 'workerselectha'
                 ]
@@ -46,7 +46,9 @@ task_num_per_instance = [150, 200, 250, 300, 350]
 task_duration = [(1, 2), (2, 3), (3, 4), (4, 5)]
 task_requirement = [(1, 3), (3, 5), (5, 7), (7, 9)]
 task_confidence = [(0.65, 0.7), (0.75, 0.8), (0.8, 0.85), (0.85, 0.9)]
-worker_capacity = [(2, 3), (3, 4), (4, 5), (5, 6)]
+# worker_capacity = [(2, 3), (3, 4), (4, 5), (5, 6)]
+worker_capacity = [(4, 5)]
+
 worker_reliability = [(0.65, 0.7), (0.7, 0.75), (0.75, 0.8), (0.8, 0.85), (0.85, 0.9)]
 working_side_length = [(0.05, 0.1), (0.1, 0.15), (0.15, 0.2), (0.2, 0.25)]
 
