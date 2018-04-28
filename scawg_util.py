@@ -108,7 +108,7 @@ def generate_instance(options):
 
 def generate_general_task_and_worker(variable_name, dist, options):
     run_jar(['general'] + options)
-    source_dirct = 'res/dataset/'
+    source_dirct = 'res/output/'
     dirct = dist
     prefix_task = dist+'_tasks'
     prefix_worker = dist+'_workers'
@@ -118,6 +118,7 @@ def generate_general_task_and_worker(variable_name, dist, options):
         if option.startswith('instance='):
             instance = int(option[9:])
     if 'real' in options:
+        source_dirct = 'dataset/real'
         dirct = 'real'
         prefix_task = 'tasks'
         prefix_worker = 'workers'

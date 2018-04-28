@@ -36,8 +36,6 @@ def generate_data(variable_name, distribution, instance_num=None, worker_num_per
     if variable_name == 'worker_location_mean' or variable_name == 'worker_location_variance':
         worker_cluster_number = 0
 
-
-
     scawg_util.generate_general_task_and_worker(variable_name, distribution, [
         distribution,
         'general',

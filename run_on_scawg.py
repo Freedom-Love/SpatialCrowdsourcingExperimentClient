@@ -43,7 +43,7 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
         total_real_data_time_length = 3600
         instance_num = total_real_data_time_length/batch_interval_time
 
-    tasks, workers = scawg_util.read_task_and_worker(variable_name, [
+    tasks, workers = scawg_util.read_task_and_worker(variable_name, distribution, [
         distribution,
         'general',
         'instance=' + str(instance_num),
