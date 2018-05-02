@@ -12,7 +12,7 @@ def generate_data_on_variable(distribution, variable_name, values):
 def generate_data(variable_name, distribution, instance_num=None, worker_num_per_instance=None, task_num_per_instance=None,
                   task_duration=(1, 2), task_requirement=(1, 3), task_confidence=(0.75, 0.8), worker_capacity=(2, 3),
                   worker_reliability=(0.75, 0.8), working_side_length=(0.05, 0.1), batch_interval_time=120, worker_location_mean = 0.5,
-                worker_location_variance = 0.2, worker_cluster_number = 3):
+                worker_location_variance = 0.05, worker_cluster_number = 3):
 
     """
         generate data according to settings

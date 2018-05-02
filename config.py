@@ -70,7 +70,7 @@ default_setting = {
     'working_side_length': (0.05, 0.1),
     'batch_interval_time': 120,
     'worker_location_mean': 0.5,
-    'worker_location_variance': 0.02,
+    'worker_location_variance': 0.05,
     'worker_cluster_number': 3
 }
 
