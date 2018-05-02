@@ -11,7 +11,7 @@ __author__ = 'Jian Xun'
 def run_exp(variable_name, distribution, instance_num=None, worker_num_per_instance=None, task_num_per_instance=None,
             task_duration=(1, 2), task_requirement=(1, 3), task_confidence=(0.75, 0.8), worker_capacity=(1, 3),
             worker_reliability=(0.75, 0.8), working_side_length=(0.05, 0.1), batch_interval_time=120, worker_location_mean = 0.5,
-                worker_location_variance = 0.2, worker_cluster_number = 3):
+                worker_location_variance = 0.2, worker_cluster_number = 3, worker_speed=0.25):
     """
     run experiment and return the result
     :type distribution: str
@@ -27,6 +27,8 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
     :type batch_interval_time: double
     :return:
     """
+
+
 
     # DBUtil.initialize_db()
     DBUtil.clear()
@@ -64,7 +66,8 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
         'batch_interval_time=' + str(batch_interval_time),
         'worker_location_mean=' + str(worker_location_mean),
         'worker_location_variance=' + str(worker_location_variance),
-        'worker_cluster_number=' + str(worker_cluster_number)
+        'worker_cluster_number=' + str(worker_cluster_number),
+        'worker_speed=' + str(worker_speed)
     ])
     logger.info('data loaded')
 

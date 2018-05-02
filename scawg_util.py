@@ -16,6 +16,7 @@ class Worker:
         self.latitude = None
         self.capacity = 1
         self.activeness = 1
+        self.velocity = 0.25
         self.min_lat = None
         self.min_lon = None
         self.max_lat = None
@@ -41,6 +42,7 @@ class Worker:
         self.max_lat = params[5][2]
         self.max_lon = params[5][3]
         self.reliability = params[6]
+        self.velocity = params[7]
 
 
 class Task:

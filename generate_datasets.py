@@ -11,8 +11,8 @@ def generate_data_on_variable(distribution, variable_name, values):
 
 def generate_data(variable_name, distribution, instance_num=None, worker_num_per_instance=None, task_num_per_instance=None,
                   task_duration=(1, 2), task_requirement=(1, 3), task_confidence=(0.75, 0.8), worker_capacity=(2, 3),
-                  worker_reliability=(0.75, 0.8), working_side_length=(0.05, 0.1), batch_interval_time=120, worker_location_mean = 0.5,
-                worker_location_variance = 0.05, worker_cluster_number = 3):
+                  worker_reliability=(0.75, 0.8), working_side_length=(0.05, 0.1), batch_interval_time=120, worker_location_mean=0.5,
+                worker_location_variance=0.05, worker_cluster_number=3, worker_speed=0.25):
 
     """
         generate data according to settings
@@ -27,6 +27,7 @@ def generate_data(variable_name, distribution, instance_num=None, worker_num_per
         :type worker_reliability: tuple
         :type working_side_length: tuple
         :type batch_interval_time: double
+        :type worker_speed: double
     """
     logger.info('generating data')
     if distribution == 'real':
@@ -60,7 +61,8 @@ def generate_data(variable_name, distribution, instance_num=None, worker_num_per
         'batch_interval_time=' + str(batch_interval_time),
         'worker_location_mean=' + str(worker_location_mean),
         'worker_location_variance=' + str(worker_location_variance),
-        'worker_cluster_number=' + str(worker_cluster_number)
+        'worker_cluster_number=' + str(worker_cluster_number),
+        'worker_speed=' + str(worker_speed)
     ])
     logger.info('data generated')
 
@@ -80,4 +82,5 @@ if __name__ == '__main__':
             # generate_data_on_variable(dist, 'worker_capacity', config.worker_capacity)
             # generate_data_on_variable(dist, 'worker_reliability', config.worker_reliability)
             # generate_data_on_variable(dist, 'working_side_length', config.working_side_length)
-            generate_data_on_variable(dist, 'batch_interval_time', config.batch_interval_time)
+            # generate_data_on_variable(dist, 'batch_interval_time', config.batch_interval_time)
+            generate_data_on_variable(dist, 'worker_speed', config.worker_speed)
