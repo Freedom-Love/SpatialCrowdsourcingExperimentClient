@@ -140,6 +140,8 @@ def generate_general_task_and_worker(variable_name, dist, options):
         move(path.join(source_dirct, 'worker/workers' + str(i)+'.txt'), path.join(parent_dir, sub_dir, file_name))
 
 
+
+
 def read_task_and_worker(variable_name, dist, options):
     dirct = dist
     prefix_task = dist + '_tasks'

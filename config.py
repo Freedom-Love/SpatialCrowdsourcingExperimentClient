@@ -38,9 +38,9 @@ output_order_batched_mode = ['geotrucrowdgreedy',
                             ]
 
 # total_worker_num = 100000
-distribution = ['gaus', 'skew', 'unif']
+# distribution = ['gaus', 'skew', 'unif']
 # distribution = ['real']
-# distribution = ['unif']
+distribution = ['unif']
 
 
 worker_num_per_instance = [150, 200, 250, 300, 350]
@@ -56,7 +56,7 @@ working_side_length = [(0.05, 0.1), (0.1, 0.15), (0.15, 0.2), (0.2, 0.25)]
 batch_interval_time = [30, 60, 120, 180]
 worker_cluster_number = [1, 3, 5, 7]
 worker_location_mean = [0.1, 0.3, 0.5, 0.7, 0.9]
-worker_location_variance = [0.1, 0.15, 0.2, 0.25, 0.3]
+worker_location_variance = [0.01, 0.03, 0.05, 0.07, 0.1]
 
 default_setting = {
     'instance_num': 50,
