@@ -38,7 +38,7 @@ output_order_batched_mode = ['geotrucrowdgreedy',
                             ]
 
 # total_worker_num = 100000
-distribution = ['gaus', 'skew', 'unif', 'real']
+distribution = ['gaus', 'skew', 'unif']
 # distribution = ['real']
 # distribution = ['unif']
 

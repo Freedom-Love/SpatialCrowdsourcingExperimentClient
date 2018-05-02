@@ -81,7 +81,7 @@ def run_exp(variable_name, distribution, instance_num=None, worker_num_per_insta
     for method in result:
         logger.info('assign ' + method)
         print 'assign' + method
-        # if method == 'workerselectprogressive' and distribution == 'real' and task_duration[0] >= 4:
+        # if method == 'workerselectprogressive' and task_duration[0] >= 4:
         #     continue
         if method == 'geotrucrowdhgr' and task_requirement[0] >= 7:
             continue
